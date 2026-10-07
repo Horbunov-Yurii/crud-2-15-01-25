@@ -1,13 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css" integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="./sryle.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
+      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./sryle.css" />
+  </head>
+  <body>
+    <div class="container">
+      <button class="btn" type="button">open modal</button>
+      <ul class="list"></ul>
+    </div>
+    <div class="backdrop">
+      <div class="modal">
+        <form class="form">
+          <input name="image" type="text" placeholder="enter image" class="input"/>
+          <input name="name" type="text" placeholder="enter name" class="input"/>
+          <input name="description" type="text" placeholder="enter description" class="input"/>
+          <input name="calories" type="text" placeholder="enter calories" class="input"/>
+          <input name="price" type="text" placeholder="enter price" class="input"/>
+          <input name="type" type="text" placeholder="enter type" class="input"/>
+          <button class="submit" type="submit">Create</button>
+        </form>
+      </div>
+    </div>
     <script type="module" src="./app.js"></script>
-</body>
+  </body>
 </html>
