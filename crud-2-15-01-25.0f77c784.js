@@ -714,7 +714,117 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"2R06K":[function(require,module,exports,__globalThis) {
+var _getIceCream = require("./api/getIceCream");
+var _renderMarkup = require("./markup/renderMarkup");
+var _postIceCream = require("./api/postIceCream");
+const listRef = document.querySelector(".list");
+const backdropRef = document.querySelector(".backdrop");
+const btnRef = document.querySelector(".btn");
+const formRef = document.querySelector(".form");
+formRef.addEventListener("submit", (evt)=>{
+    evt.preventDefault();
+    const element = evt.currentTarget.elements;
+    const iceCreamData = {
+        name: element.name.value,
+        type: element.type.value,
+        calories: element.calories.value,
+        price: element.price.value,
+        description: element.description.value,
+        image: element.image.value
+    };
+    (0, _postIceCream.postIceCream)(iceCreamData).then((res)=>renderList());
+    formRef.reset();
+    closeModal();
+});
+btnRef.addEventListener("click", ()=>{
+    openModal();
+});
+function openModal() {
+    backdropRef.style.display = "flex";
+    backdropRef.style.pointerEvents = "auto";
+}
+function closeModal() {
+    backdropRef.style.display = "none";
+}
+function renderList() {
+    (0, _getIceCream.getIceCream)().then((res)=>listRef.innerHTML = (0, _renderMarkup.renderMarkup)(res));
+}
+renderList();
 
-},{}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire7389", {})
+},{"./api/getIceCream":"9eMjR","./markup/renderMarkup":"daQTY","./api/postIceCream":"5CAPp"}],"9eMjR":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getIceCream", ()=>getIceCream);
+const getIceCream = ()=>{
+    return fetch("http://localhost:3000/iceCreams").then((res)=>res.json());
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"daQTY":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "renderMarkup", ()=>renderMarkup);
+function renderMarkup(itms) {
+    const item = itms.map(({ id, name, type, calories, price, description, image })=>{
+        return `
+        <li id="${id}" class="item">
+            <img src="${image}" alt="${description}">
+            <h2>${name}</h2>
+            <p>${type}</p>
+            <p>${calories}</p>
+            <p>${description}</p>
+            <p>${price}</p>
+            <button data-action="edit" type="button" class="edit">edit</button>
+            <button data-action="delete" type="button" class="delete">delete</button>
+        </li>`;
+    }).join("");
+    return item;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"5CAPp":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "postIceCream", ()=>postIceCream);
+const postIceCream = (iceData)=>{
+    const options = {
+        method: "POST",
+        body: JSON.stringify(iceData),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    return fetch("http://localhost:3000/iceCreams", options).then((res)=>res.json());
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire7389", {})
 
 //# sourceMappingURL=crud-2-15-01-25.0f77c784.js.map

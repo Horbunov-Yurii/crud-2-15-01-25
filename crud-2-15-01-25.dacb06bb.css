@@ -21,7 +21,7 @@ button {
 img {
   width: 100%;
   max-width: 100%;
-  height: auto;
+  height: 300px;
   display: block;
 }
 
@@ -114,5 +114,11 @@ hr {
   font-size: 30px;
   font-weight: 900;
   display: block;
+}
+
+.item {
+  border-radius: 5px;
+  outline: 5px solid gray;
+  padding: 10px;
 }
 /*# sourceMappingURL=crud-2-15-01-25.dacb06bb.css.map */
