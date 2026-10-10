@@ -89,6 +89,16 @@
       "price": 43,
       "description": "Морозиво на основі кокосового молока з ароматом тропіків.",
       "image": "https://lifestyle-ua.com/wp-content/uploads/2023/05/morozyvo-z-dostupnyh-produktiv9.webp"
+    },
+    {
+      "name": "шоколадне",
+      "type": "рожок",
+      "calories": "105",
+      "price": "40",
+      "description": "улюблене",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4mgoI2GQ1mWhUGCO7WblcIkV5RnulklAPIM-9lFiux_tQPokVd1UvWPA&s=10",
+      "id": "Y1RsqsHLz2U"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
