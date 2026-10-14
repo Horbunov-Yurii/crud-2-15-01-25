@@ -1,5 +1,3 @@
-
-
 export const postIceCream = (iceData) => {
   const options = {
     method: "POST",
