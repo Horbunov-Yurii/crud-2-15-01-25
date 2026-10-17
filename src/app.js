@@ -11,7 +11,7 @@ const formRef = document.querySelector(".form");
 
 let currentId = null;
 
-listRef.addEventListener("click", (evt) => {
+listRef.addEventListener("click", async (evt) => {
   if (evt.target.nodeName !== "BUTTON") {
     return;
   }
@@ -19,7 +19,9 @@ listRef.addEventListener("click", (evt) => {
   const li = evt.target.closest("li");
   const id = li.id;
   if (action === "delete") {
-    delIceCream(id).then((res) => renderList());
+    // delIceCream(id).then((res) => renderList());
+    await delIceCream(id);
+    renderList();
     return;
   }
   if (action === "edit") {
@@ -34,7 +36,7 @@ listRef.addEventListener("click", (evt) => {
   }
 });
 
-formRef.addEventListener("submit", (evt) => {
+formRef.addEventListener("submit", async (evt) => {
   evt.preventDefault();
   const element = evt.currentTarget.elements;
   const iceCreamData = {
@@ -46,12 +48,14 @@ formRef.addEventListener("submit", (evt) => {
     image: element.image.value,
   };
   if (currentId === null) {
-    postIceCream(iceCreamData).then((res) => renderList());
+    // postIceCream(iceCreamData).then((res) => renderList());
+    await postIceCream(iceCreamData);
+afterRender()
     return;
   }
-  updateIceCream(iceCreamData, currentId).then((res) => renderList());
-  closeModal();
-  formRef.reset();
+  // updateIceCream(iceCreamData, currentId).then((res) => renderList());
+  await updateIceCream(iceCreamData, currentId);
+afterRender()
   currentId = null;
 });
 
@@ -67,8 +71,16 @@ function closeModal() {
   backdropRef.style.display = "none";
 }
 
-function renderList() {
-  getIceCream().then((res) => (listRef.innerHTML = renderMarkup(res)));
+async function renderList() {
+  // getIceCream().then((res) => (listRef.innerHTML = renderMarkup(res)));
+  const res = await getIceCream();
+  listRef.innerHTML = renderMarkup(res);
+}
+
+function afterRender() {
+      renderList();
+      closeModal();
+      formRef.reset();
 }
 
 renderList();
